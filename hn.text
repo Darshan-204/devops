@@ -37,3 +37,36 @@ echo 'Build or tests failed.'
 }
 }
 }
+
+
+
+
+
+
+
+
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/spring-projects/spring-petclinic.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh './mvnw clean install'
+            }
+        }
+        stage('Test Reports') {
+            steps {
+                junit '**/target/surefire-reports/*.xml'
+            }
+        }
+        stage('Archive Artifact') {
+            steps {
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            }
+        }
+    }
+}
