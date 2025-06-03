@@ -166,3 +166,6 @@ https://devopslab.notion.site/
           name:nginx
           state:started
           enabled:yes
+
+
+**/target/surefire-reports/*.xml
