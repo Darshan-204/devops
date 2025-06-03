@@ -144,3 +144,25 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 </plugins> 
 </build> 
 </project>
+
+
+
+https://devopslab.notion.site/
+
+
+
+---
+- name:Install and start NGINX on localhost
+  hosts:localhost
+  become:yourusername
+  tasks:
+    -name: Install NGINX
+     apt:
+       name:nginx 
+       state:present
+       update_cache:yes 
+    - name: Ensuring NGINX is running
+      service:
+          name:nginx
+          state:started
+          enabled:yes
